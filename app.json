@@ -1,0 +1,26 @@
+{
+  "name": "KD PANTA 00",
+  "description": "Javascript WhatsApp bot made by KD PANTA",
+  "logo": "https://i.ibb.co/xXCZMrs/3609.jpg",
+  "keywords": ["bot"],
+  "success_url": "/",
+
+  "env": {
+    "SESSION_ID": {
+      "description": "Put the session-id here.",
+      "required": true
+    },
+    
+    "MONGODB": {
+      "description": "Put your a mongodb url.",
+      "required": true
+    }   
+},
+
+     "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+        }
+     ],
+  "stack": "heroku-24"
+}
