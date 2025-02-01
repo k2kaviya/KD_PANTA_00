@@ -25,17 +25,17 @@
 <img src="https://i.imgur.com/dBaSKWF.gif" height="120" width="100%">
 
 
-### 0️⃣1️⃣ 𝐅𝐎𝐑𝐊 𝐊𝐃 𝐏𝐀𝐍𝐓𝐀 00 :
+## 0️⃣1️⃣ 𝐅𝐎𝐑𝐊 𝐊𝐃 𝐏𝐀𝐍𝐓𝐀 00 :
 <a href="https://github.com/Kdpanta2/KD_PANTA_00/fork"><img
 src="https://img.shields.io/badge/Github-Fork%20Repo-red?style=for-the-badge&logo=Github" width="220" height="40"/></a></p>
 <hr>
 
-### 0️⃣2️⃣ 𝐆𝐄𝐓 𝐏𝐀𝐈𝐑 𝐂𝐎𝐃𝐄 :
+## 0️⃣2️⃣ 𝐆𝐄𝐓 𝐏𝐀𝐈𝐑 𝐂𝐎𝐃𝐄 :
 <a href="https://kd-panta-web-6ee7fa9f3f26.herokuapp.com/"><img
 src="https://img.shields.io/badge/Whatsapp-Pair%20Code-green?style=for-the-badge&logo=Whatsapp)" width="220" height="40"/></a></p>
 <hr>
 
-### 0️⃣3️⃣ 𝐃𝐄𝐏𝐋𝐎𝐘 𝐏𝐋𝐀𝐓𝐅𝐑𝐎𝐌 :
+## 0️⃣3️⃣ 𝐃𝐄𝐏𝐋𝐎𝐘 𝐏𝐋𝐀𝐓𝐅𝐑𝐎𝐌 :
 
 
 ➦ 👉 𝗚𝗜𝗧𝗛𝗨𝗕 𝗪𝗢𝗥𝗞𝗙𝗟𝗢𝗪𝗦 𝗖𝗢𝗗𝗘  ( .github/workflow/deploy.yml )
@@ -53,7 +53,7 @@ title="DEPLOY-ON HEROKU" src="https://img.shields.io/badge/DEPLOY-ON HEROKU-h?co
 <p align="venter">
 <img src="https://i.imgur.com/dBaSKWF.gif" height="120" width="100%">
 
-### 𝗠𝗢𝗡𝗚𝗢𝗗𝗕 𝗨𝗥𝗟 𝗩𝗜𝗗𝗘𝗢 🖇️
+## 𝗠𝗢𝗡𝗚𝗢𝗗𝗕 𝗨𝗥𝗟 𝗩𝗜𝗗𝗘𝗢 🖇️
 
 <a href="https://youtu.be/VPIDwJMVNHM?si=nQWY00oJXzXkMjos"><img
 src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" width="220" height="40"/></a></p>
