@@ -31,7 +31,7 @@ src="https://img.shields.io/badge/Github-Fork%20Repo-red?style=for-the-badge&log
 <hr>
 
 ### 0️⃣2️⃣ 𝐆𝐄𝐓 𝐏𝐀𝐈𝐑 𝐂𝐎𝐃𝐄 :
-<a href="https://kd-panta-pair-web-05c194436d88.herokuapp.com/"><img
+<a href="https://kd-panta-web-6ee7fa9f3f26.herokuapp.com/"><img
 src="https://img.shields.io/badge/Whatsapp-Pair%20Code-green?style=for-the-badge&logo=Whatsapp)" width="220" height="40"/></a></p>
 <hr>
 
