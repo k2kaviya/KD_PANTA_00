@@ -38,7 +38,7 @@ src="https://img.shields.io/badge/Whatsapp-Pair%20Code-green?style=for-the-badge
 ## 0️⃣3️⃣ 𝐃𝐄𝐏𝐋𝐎𝐘 𝐏𝐋𝐀𝐓𝐅𝐑𝐎𝐌 :
 
 
-➦ 👉 𝗚𝗜𝗧𝗛𝗨𝗕 𝗪𝗢𝗥𝗞𝗙𝗟𝗢𝗪𝗦 𝗖𝗢𝗗𝗘  ( .github/workflow/deploy.yml )
+➦ 👉 𝗚𝗜𝗧𝗛𝗨𝗕 𝗪𝗢𝗥𝗞𝗙𝗟𝗢𝗪𝗦 𝗖𝗢𝗗𝗘  ( .github/workflows/deploy.yml )
 
 <a href='https://whatsapp.com/channel/0029VaxNSDR4SpkEoUszuP3E/137' target="_blank"><img 
 alt='DEPLOY' src='https://img.shields.io/badge/DEPLOY-NOW-h?color=navy&style=for-the-badge&logo=visualstudiocode' width="190" height="36" />
