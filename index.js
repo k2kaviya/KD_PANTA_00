@@ -1,16 +1,8 @@
 
+
+
 const {
 default: makeWASocket,
-getAggregateVotesInPollMessage,
-getDevice,
-delay,
-makeInMemoryStore,
-makeCacheableSignalKeyStore,
-downloadContentFromMessage,
-generateForwardMessageContent,
-generateWAMessageFromContent,
-prepareWAMessageMedia,
-proto,
 useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
