@@ -20,6 +20,7 @@ ANTI_LINK: process.env.ANTILINK || "true",
 //====02. නරක වචන ඩිලිට් වෙන්න එපා නම්  'false' ⛔
 ANTI_BAD: process.env.ANTI_BAD || "true",
 
-
+ANTI_VV: process.env.ANTI_VV || "true",
+  
 DELETEMSGSENDTO : process.env.DELETEMSGSENDTO === undefined ? '' : process.env.DELETEMSGSENDTO            
 };
