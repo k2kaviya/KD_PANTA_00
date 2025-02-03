@@ -5,10 +5,10 @@ function convertToBool(text, fault = 'true') { return text === fault ? true : fa
 
 
 //====ඔයාගෙ අලුතෙන් ගත්ත session id එක මෙතනට දාන්න 🪄====උඩු කමා දෙක ඇතුලෙ දාන්න ඕනෙ====🎉//
-SESSION_ID: process.env.SESSION_ID || "KD-PANTA-00-coJCCbza#lQIHjIAbLMLD19TrsAx9iyZsuKHhdBBh2zAcZVxTEbo",  
+SESSION_ID: process.env.SESSION_ID || "your_Session_Id",  
 
 //====ඔයාගෙ monhodb url එක මෙතනට දාන්න 🎇====උඩු කමා දෙක ඇතුලෙ දාන්න ඕනෙ====🔥//
-MONGODB: process.env.MONGODB || "mongodb+srv://athulakumara604:qBwvqo6IM64eT1SL@cluster0.wr7rx.mongodb.net/",  
+MONGODB: process.env.MONGODB || "your_Mongodb_Url",  
 
 //====ඔයා ඉන්න ගෲප් වල ලින්ක් ඔටෝ ඩිලිට් වෙන්න හදාගන්න...✨
 //====01. ලින්ක් ඩිලිට් වෙන්න ඕනෙ නම් 'true' ✅
@@ -20,7 +20,6 @@ ANTI_LINK: process.env.ANTILINK || "true",
 //====02. නරක වචන ඩිලිට් වෙන්න එපා නම්  'false' ⛔
 ANTI_BAD: process.env.ANTI_BAD || "true",
 
-ANTI_VV: process.env.ANTI_VV || "true",
-  
+//====මේක වෙනස් කරන්න යන්න එපා 👇====//
 DELETEMSGSENDTO : process.env.DELETEMSGSENDTO === undefined ? '' : process.env.DELETEMSGSENDTO            
 };
