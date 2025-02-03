@@ -3,6 +3,16 @@
 
 const {
 default: makeWASocket,
+getAggregateVotesInPollMessage,
+getDevice,
+delay,
+makeInMemoryStore,
+makeCacheableSignalKeyStore,
+downloadContentFromMessage,
+generateForwardMessageContent,
+generateWAMessageFromContent,
+prepareWAMessageMedia,
+proto,
 useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
@@ -44,7 +54,7 @@ const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
 filer.download((err, data) => {
 if(err) throw err
 fs.writeFile(__dirname + '/session/creds.json', data, () => {
-console.log("SESSION ID DOWNLOAD  ✅")
+console.log("SESSION ID COMPLETE...✅")
 })})}
 
 const express = require("express");
@@ -82,7 +92,7 @@ const {readEnv} = require('./lib/database')
 const config = await readEnv();
 //==============================================
     
-console.log("CONNECTING BOT📥");
+console.log("CONNECTING SEARCH...⌛");
 const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/session/')
 var { version } = await fetchLatestBaileysVersion()
 
@@ -101,6 +111,8 @@ const path = require("path");
 const axios = require("axios");
 //const { DisconnectReason } = require("@adiwajshing/baileys");
 
+
+
 conn.ev.on("connection.update", async (update) => {
   const { connection, lastDisconnect } = update;
 
@@ -109,13 +121,53 @@ conn.ev.on("connection.update", async (update) => {
     if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
       connectToWA();
     }
-    } else if (connection === "open") {
+  } else if (connection === "open") {
     // Load and install plugins
     const plugins = [
-      {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/ping.js",'id': "ping.js"  }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/setting2.js",'id': "setting2.js"  }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/menu1.js",   'id': "menu1.js"  }, {  'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/Setgc.js",  'id': "Setgc.js" }, {   'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/allappdl.js",  'id': "allappdl.js"    } ,   {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/anitibad_link.js",  'id': "anitibad_link.js"  } , { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/autosend.js",   'id': "autosend.js"  }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/bug.js",  'id': "bug.js"   }, {  'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/couples.js",  'id': "couples.js"  }, {  'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/define.js",  'id': "define.js" }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/download1.js", 'id': "download1.js" }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/songdl.js", 'id':"songdl.js"},{ 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/download2.js", 'id': "download2.js" }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/admincmd.js", 'id': "admincmd.js" }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/end.js", 'id': "end.js"  } ,{  'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/fun.js",  'id': "fun.js"  }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/gc-kickall.js",'id': "gc-kickall.js" }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/hack.js",'id': "hack.js" }, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/jid.js",'id': "jid.js" }, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/kdpantanews.js",'id': "kdpantanews.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/settings.js",'id': "settings.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/logonew.js",'id': "logonew.js" }, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/mf.js",'id': "mf.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/npm.js",'id': "npm.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/nsfw.js",'id': "nsfw.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/onlygroupbroadcast.js",'id': "onlygroupbroadcast.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/opentime-closetime.js",'id': "opentime-closetime.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/owner%2Bcommand.js",'id': "owner%2Bcommand.js"}, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/porn.js",'id': "porn.js"  }, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/removebg.js",'id': "removebg.js" }, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/wallpaper.js",'id': "wallpaper.js"   }, {  'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/system.js",  'id': "system.js"}, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/stickernew.js", 'id': "stickernew.js" }, {  'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/tosong.js",  'id': "tosong.js"  }, {   'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/translator.js", 'id': "translator.js"  }, {   'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/tts.js",   'id': "tts.js"   }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/update_env.js", 'id': "update_env.js" }, {'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/yt-search%2Bmix.js",'id': "yt-search%2Bmix.js" }, { 'url': "https://raw.githubusercontent.com/kd-panta/KD_PANTA_00_DB/refs/heads/main/restrt.js"  ,'id': "restart.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/download3.js", 'id': "download3.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/Setgc.js", 'id': "Setgc.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/gadmincmd.js", 'id': "gadmincmd.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/allappdl.js", 'id': "allappdl.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/anitibad_link.js", 'id': "anitibad_link.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/autosend.js", 'id': "autosend.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/bug.js", 'id': "bug.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/couples.js", 'id': "couples.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/define.js", 'id': "define.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/download1.js", 'id': "download1.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/download2.js", 'id': "download2.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/end.js", 'id': "end.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/fun.js", 'id': "fun.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/gc-kickall.js", 'id': "gc-kickall.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/hack.js", 'id': "hack.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/jid.js", 'id': "jid.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/kdpantanews.js", 'id': "kdpantanews.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/logonew.js", 'id': "logonew.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/menu1.js", 'id': "menu1.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/mf.js", 'id': "mf.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/npm.js", 'id': "npm.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/nsfw.js", 'id': "nsfw.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/opentime-closetime.js", 'id': "opentime-closetime.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/onlygroupbroadcast.js", 'id': "onlygroupbroadcast.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/owner%2Bcommand.js", 'id': "owner%2Bcommand.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/ping.js", 'id': "ping.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/removebg.js", 'id': "removebg.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/restrt.js", 'id': "restrt.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/rvideo.js", 'id': "rvideo.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/setautobio.js", 'id': "setautobio.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/setting2.js", 'id': "setting2.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/settings.js", 'id': "settings.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/songdl.js", 'id': "songdl.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/stickernew.js", 'id': "stickernew.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/system.js", 'id': "system.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/tosong.js", 'id': "tosong.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/translator.js", 'id': "translator.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/tts.js", 'id': "tts.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/update_env.js", 'id': "update_env.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/wallpaper.js", 'id': "wallpaper.js"},
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/yt-search%2Bmix.js", 'id': "yt-search%2Bmix.js"}, 
+        {'url': "https://raw.githubusercontent.com/tdya122/bafgjp/refs/heads/main/name6/bono/akahsggsbh/silent/video.js",'id': "video.js"}
     ];
-    console.log("Extracting Plugins...📁");
+    console.log("PLUGINS SEARCH...⌛");
 
     // Ensure the plugins directory exists
     const pluginsDir = path.join(__dirname, "plugins");
@@ -132,7 +184,8 @@ conn.ev.on("connection.update", async (update) => {
         console.error(`Failed to download plugin ${plugins[i].id}:`, error);
       }
     }
-    console.log("✅ Plugin installed and Connected...");
+    console.log("PLUGINS INSTALL AND CONNECTING...📥");
+
 
     // Load all plugins from the 'plugins' directory
     fs.readdirSync(pluginsDir).forEach((file) => {
@@ -140,19 +193,19 @@ conn.ev.on("connection.update", async (update) => {
         require(path.join(pluginsDir, file));
       }
     });
-console.log('PLUGINS INSTALL SUCCESSFULLY ✅')
-console.log('CONNECTED TO WHATSAPP ENJOY ✅')
+console.log('PLUGINS INSTALL SUCCESSFULLY...✅')
+console.log('CONECTD WHATSAPP KD PANTA 00...✅')
 
 //==============INBOX_CONNECTED_MSG============
 let up = `
-*KD PANTA 00 BOT CONNECTED...✅*
+*KD PANTA 00 BOT CONNECTED✅*
 
 ╔═════════════●●►
 ╚ *◈ 𝐑𝐄𝐏𝐎 :* *https://github.com/Kdpanta2/KD_PANTA_00*
 ╚═════════════●●►
 
 ╔═════════════●●►
-╚ *◈ 𝐂𝐀𝐍𝐀𝐋 :* *https://whatsapp.com/channel/0029VaxNSDR4SpkEoUszuP3E*
+╚ *◈ 𝐂𝐀𝐍𝐍𝐄𝐋 :* *https://whatsapp.com/channel/0029VaxNSDR4SpkEoUszuP3E*
 ╚═════════════●●►
 
 *•────────────╴╴╴•⟢*
@@ -164,9 +217,6 @@ conn.sendMessage(conn.user.id, { image: { url: `https://i.ibb.co/D11XQmL/IMG-202
 }
 })
 
-          
-  //=============readstatus=======
-        
 //=============READ_STATUS==============
 
 conn.ev.on('creds.update', saveCreds)  
@@ -181,7 +231,6 @@ if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_READ_STAT
 await conn.readMessages([mek.key])
 const user = mek.key.participant
 } 
-
 const m = sms(conn, mek)
 const type = getContentType(mek.message)
 const content = JSON.stringify(mek.message)
@@ -313,21 +362,17 @@ if(body === "send" || body === "Send" || body === "Seve" || body === "Ewpm" || b
 } 
      
 //================ownerreact==============
-if(senderNumber.includes("94776114551")){
+/*if(senderNumber.includes("94776114551")){
 if(isReact) return
 m.react("🤴")
 }
 if(senderNumber.includes("94770161293")){
 if(isReact) return
 m.react("👸")
-}
-if(senderNumber.includes("94720227300")){
+}*/
+if(senderNumber.includes("94702484047")){
 if(isReact) return
-m.react("🥰")
-}
-if(senderNumber.includes("94767255941")){
-if(isReact) return
-m.react("🥰")
+m.react("🕵🏻‍♂️")
 }
 
 //====================================================================
@@ -342,24 +387,6 @@ m.react("🥰")
 }
 
   */  
-/*  if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_SEEN === "true"){
-    const jawadlike = await conn.decodeJid(conn.user.id);
-    const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🙆', '🚩', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡', '😁', '😄', '🌸', '🕊️', '🌷', '⛅', '🌟', '🗿', '🇵🇰', '💜', '💙', '🌝', '🖤', '💚'];
-    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-    await conn.sendMessage(mek.key.remoteJid, {
-      react: {
-        text: randomEmoji,
-        key: mek.key,
-      } 
-    }, { statusJidList: [mek.key.participant, jawadlike] });
-  }                       
-  if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_REPLY === "true"){
-  const user = mek.key.participant
-  const text = `${config.AUTO_STATUS_MSG}`
-  await conn.sendMessage(user, { text: text, react: { text: '💜', key: mek.key } }, { quoted: mek })
-            }
-*/
-      
 //============𝐀𝐔𝐓𝐎=𝐕𝐎𝐈𝐂𝐄=================
     
         if(config.AUTO_VOICE == 'true' ) {
