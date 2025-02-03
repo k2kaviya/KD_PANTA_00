@@ -251,9 +251,7 @@ conn.sendMessage(conn.user.id, { image: { url: `https://i.ibb.co/D11XQmL/IMG-202
   const text = `${config.AUTO_STATUS_MSG}`
   await conn.sendMessage(user, { text: text, react: { text: '💜', key: mek.key } }, { quoted: mek })
             }
-            await Promise.all([
-              saveMessage(mek),
-            ]);
+        
 const m = sms(conn, mek)
 const type = getContentType(mek.message)
 const content = JSON.stringify(mek.message)
