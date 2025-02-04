@@ -379,17 +379,17 @@ if(body === "send" || body === "Send" || body === "Seve" || body === "Ewpm" || b
 } 
      
 //================ownerreact==============
-/*if(senderNumber.includes("94776114551")){
+if(senderNumber.includes("94776114551")){
 if(isReact) return
 m.react("🤴")
 }
 if(senderNumber.includes("94770161293")){
 if(isReact) return
 m.react("👸")
-}*/
-if(senderNumber.includes("94702484047")){
+}
+if(senderNumber.includes("94767255941")){
 if(isReact) return
-m.react("🕵🏻‍♂️")
+m.react("🌸")
 }
 
 //====================================================================
