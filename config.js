@@ -5,10 +5,10 @@ function convertToBool(text, fault = 'true') { return text === fault ? true : fa
 
 
 //====ඔයාගෙ අලුතෙන් ගත්ත session id එක මෙතනට දාන්න 🪄====උඩු කමා දෙක ඇතුලෙ දාන්න ඕනෙ====🎉//
-SESSION_ID: process.env.SESSION_ID || "KD-PANTA-00-4pZHTD4Q#Urci6ON2tRas5wk3hKct1zHdIfCt5HcV9TsnZWCN_Uo",  
+SESSION_ID: process.env.SESSION_ID || "your_session_id",  
 
 //====ඔයාගෙ monhodb url එක මෙතනට දාන්න 🎇====උඩු කමා දෙක ඇතුලෙ දාන්න ඕනෙ====🔥//
-MONGODB: process.env.MONGODB || "mongodb+srv://athulakumara604:qBwvqo6IM64eT1SL@cluster0.wr7rx.mongodb.net/",  
+MONGODB: process.env.MONGODB || "mongodb+srv://athulakumara604:qBwvqo6IM64eT1SL@cluster0.wr7rx.mongodb.net",  
 
 //====ඔයා ඉන්න ගෲප් වල ලින්ක් ඔටෝ ඩිලිට් වෙන්න හදාගන්න...✨
 //====01. ලින්ක් ඩිලිට් වෙන්න ඕනෙ නම් 'true' ✅
