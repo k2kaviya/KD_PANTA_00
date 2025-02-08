@@ -5,7 +5,7 @@ function convertToBool(text, fault = 'true') { return text === fault ? true : fa
 
 
 //====ඔයාගෙ අලුතෙන් ගත්ත session id එක මෙතනට දාන්න 🪄====උඩු කමා දෙක ඇතුලෙ දාන්න ඕනෙ====🎉//
-SESSION_ID: process.env.SESSION_ID || "your_session_id",  
+SESSION_ID: process.env.SESSION_ID || "KD-PANTA-00-i24XgYTB#96U1BdB7Xb7xx3dHhV9aLtefngcrozNWU-KGjxj8eXE",  
 
 //====ඔයාගෙ monhodb url එක මෙතනට දාන්න 🎇====උඩු කමා දෙක ඇතුලෙ දාන්න ඕනෙ====🔥//
 MONGODB: process.env.MONGODB || "mongodb+srv://athulakumara604:qBwvqo6IM64eT1SL@cluster0.wr7rx.mongodb.net",  
